@@ -78,7 +78,7 @@ namespace R0x
     }
 
     R0X_TOOLS_ITERATOR_DEFINITION(,);
-    R0X_TOOLS_ITERATOR_DEFINITION(const, Const);
+    R0X_TOOLS_ITERATOR_DEFINITION(const,Const);
   }
 }
 
