@@ -27,6 +27,8 @@
 #ifndef _R0X_TOOLS_ITERATOR_H_
 #define _R0X_TOOLS_ITERATOR_H_
 
+#include "internal_/header.h"
+
 namespace R0x
 {
   namespace Tools
@@ -34,7 +36,8 @@ namespace R0x
     template <typename T>
     struct TraitTableType
     {
-      typedef decltype(((T*)(0))->operator[](0)) DataType;
+      typedef decltype(((T*)(nullptr))->operator[](0))  DataType;
+      typedef T                                         Type;
     };
 
 #define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX)                \
