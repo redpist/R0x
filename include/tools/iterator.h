@@ -40,10 +40,9 @@ namespace R0x
     class PREFIX##Iterator                                              \
     {                                                                   \
       T             *container_;                                        \
-      const int     *range_;                                            \
       int           index_;                                             \
     public:                                                             \
-      PREFIX##Iterator(T *container, const int *range, int index = 0);  \
+      PREFIX##Iterator(T *container, int index = 0);                    \
                                                                         \
       PREFIX##Iterator(const PREFIX##Iterator<T>& copyFrom);            \
                                                                         \
