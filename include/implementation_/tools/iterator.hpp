@@ -27,6 +27,8 @@
 #ifndef _R0X_IMPLEMENTATION_TOOLS_ITERATOR_H_
 #define _R0X_IMPLEMENTATION_TOOLS_ITERATOR_H_
 
+#include "type/traits.h"
+
 #define HAVE_THE_SAME_CONTAINER(X) (container_ == (X).container_)
 
 // Generate member functions for operators {+=, -=}
@@ -151,7 +153,7 @@ namespace R0x
     }                                                                   \
                                                                         \
     template <typename T>                                               \
-    CONSTNESS typename TraitTableType<T>::DataType&                     \
+    CONSTNESS typename Type::Traits::Array<T>::DataType&                \
     PREFIX##Iterator<T>::operator*(void) CONSTNESS                      \
     {                                                                   \
       return container_->operator[](index_);                            \

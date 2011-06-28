@@ -28,17 +28,12 @@
 #define _R0X_TOOLS_ITERATOR_H_
 
 #include "internal_/header.h"
+#include "type/traits.h"
 
 namespace R0x
 {
   namespace Tools
   {
-    template <typename T>
-    struct TraitTableType
-    {
-      typedef decltype(((T*)(nullptr))->operator[](0))  DataType;
-      typedef T                                         Type;
-    };
 
 #define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX)                \
     template <typename T>                                               \
@@ -76,7 +71,7 @@ namespace R0x
       bool  operator>=(const PREFIX##Iterator<T>& compareWith) const;   \
       bool  operator!=(const PREFIX##Iterator<T>& compareWith) const;   \
                                                                         \
-      CONSTNESS typename TraitTableType<T>::DataType&                   \
+      CONSTNESS typename Type::Traits::Array<T>::DataType&              \
         operator*(void) CONSTNESS;                                      \
     }
 

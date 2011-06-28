@@ -24,23 +24,40 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_INTERNAL_HEADER_H_
-# define _R0X_INTERNAL_HEADER_H_
+#ifndef _R0X_TYPE_TRAITS_FUNCTION_H_
+#define _R0X_TYPE_TRAITS_FUNCTION_H_
 
-# ifdef __GNUC__
+namespace R0x
+{
+  namespace Tools
+  {
+    namespace Type
+    {
+      namespace Traits
+      {
+        template <typename T>
+        struct Function;
 
-#  define GCC_VERSION (__GNUC__ * 10000 \
-                               + __GNUC_MINOR__ * 100 \
-                               + __GNUC_PATCHLEVEL__)
+        template <typename R, typename... Args>
+        struct Function<R (*)(Args...)>
+        {
+          typedef R       ReturnType;
+        };
 
-#  if GCC_VERSION >= 40300
+        template <typename T>
+        struct MemberFunction;
 
-#   define R0X_HAS_RVALUE_REFERENCE
-#   define R0X_HAS_VARIADIC_TEMPLATE
-#   define R0X_HAS_DECLARED_TYPE
+        template <typename R, class C, typename... Args>
+        struct MemberFunction<R (C::*)(Args...)>
+        {
+          typedef R     ReturnType;
+          typedef C     ClassType;
+        };
 
-#  endif
+      }
+    }
+  }
+}
 
-# endif
 
-#endif /* _R0X_INTERNAL_HEADER_H_ */
+#endif /* _R0X_TYPE_TRAITS_FUNCTION_H_ */

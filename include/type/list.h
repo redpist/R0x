@@ -24,23 +24,18 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_INTERNAL_HEADER_H_
-# define _R0X_INTERNAL_HEADER_H_
+#ifndef _R0X_TYPE_LIST_H_
+#define _R0X_TYPE_LIST_H_
 
-# ifdef __GNUC__
+namespace R0x
+{
+  namespace Type
+  {
+    template <typename... U>
+    struct List;
+  }
+}
 
-#  define GCC_VERSION (__GNUC__ * 10000 \
-                               + __GNUC_MINOR__ * 100 \
-                               + __GNUC_PATCHLEVEL__)
+#include "implementation_/type/list.hpp"
 
-#  if GCC_VERSION >= 40300
-
-#   define R0X_HAS_RVALUE_REFERENCE
-#   define R0X_HAS_VARIADIC_TEMPLATE
-#   define R0X_HAS_DECLARED_TYPE
-
-#  endif
-
-# endif
-
-#endif /* _R0X_INTERNAL_HEADER_H_ */
+#endif /* _R0X_TYPE_LIST_H_ */
