@@ -24,10 +24,30 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_CONTAINER_H_
-#define _R0X_CONTAINER_H_
+#ifndef _R0X_CONTAINER_BUFFER_H_
+#define _R0X_CONTAINER_BUFFER_H_
 
-#include "container/buffer.h"
+#include <cstring>
 
 
-#endif /* _R0X_CONTAINER_H_ */
+namespace R0x
+{
+  namespace Container
+  {
+    template <size_t Size, typename T = char>
+    class FixedBuffer
+    {
+      static_assert(Size, "R0x::Container::FixedBuffer<size_t Size, ...> can not have a Size = 0.");
+      T         data_[Size];
+    public:
+      FixedBuffer() { }
+      ~FixedBuffer() { }
+      T& operator[](size_t i)
+      {
+        return data_[i];
+      }
+    };
+  }
+}
+
+#endif /* _R0X_CONTAINER_BUFFER_H_ */
