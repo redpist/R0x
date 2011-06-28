@@ -33,7 +33,13 @@
                                + __GNUC_MINOR__ * 100 \
                                + __GNUC_PATCHLEVEL__)
 
+#  if GCC_VERSION >= 40300
 
+#   define R0X_HAS_RVALUE_REFERENCE
+#   define R0X_HAS_VARIADIC_TEMPLATE
+#   define R0X_HAS_DECLARED_TYPE
+
+#  endif
 
 # endif
 
