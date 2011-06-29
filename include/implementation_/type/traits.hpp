@@ -30,4 +30,6 @@
 #include "implementation_/type/traits/function.hpp"
 #include "implementation_/type/traits/array.hpp"
 
+#include "implementation_/type/traits/is.hpp"
+
 #endif /* _R0X_IMPLEMENTATION_TYPE_TRAITS_H_ */

@@ -24,8 +24,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_TYPE_TRAITS_FUNCTION_H_
-#define _R0X_TYPE_TRAITS_FUNCTION_H_
+#ifndef _R0X_TYPE_TRAITS_IS_H_
+#define _R0X_TYPE_TRAITS_IS_H_
 
 namespace R0x
 {
@@ -34,26 +34,19 @@ namespace R0x
     namespace Traits
     {
       template <typename T>
-      struct Function;
-
-      template <typename R, typename... Args>
-      struct Function<R (*)(Args...)>
+      struct IsRef
       {
-        typedef R       ReturnType;
+        enum { value = false };
       };
 
       template <typename T>
-      struct MemberFunction;
-
-      template <typename R, class C, typename... Args>
-      struct MemberFunction<R (C::*)(Args...)>
+      struct IsRef<T&>
       {
-        typedef R     ReturnType;
-        typedef C     ClassType;
+        enum { value = true };
       };
     }
   }
 }
 
 
-#endif /* _R0X_TYPE_TRAITS_FUNCTION_H_ */
+#endif /* _R0X_TYPE_TRAITS_IS_H_ */

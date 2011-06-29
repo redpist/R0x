@@ -38,6 +38,9 @@ namespace R0x
 
       template <typename T>
       struct Array;
+
+      template <typename T>
+      struct IsRef;
     }
   }
 }
