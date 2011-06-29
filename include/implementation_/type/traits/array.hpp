@@ -29,19 +29,16 @@
 
 namespace R0x
 {
-  namespace Tools
+  namespace Type
   {
-    namespace Type
+    namespace Traits
     {
-      namespace Traits
+      template <typename T>
+      struct Array
       {
-        template <typename T>
-        struct Array
-        {
-          typedef decltype(((T*)(nullptr))->operator[](0))  DataType;
-          typedef T                                         Type;
-        };
-      }
+        typedef decltype(((T*)(nullptr))->operator[](0))  DataType;
+        typedef T                                         Type;
+      };
     }
   }
 }

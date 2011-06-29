@@ -29,32 +29,28 @@
 
 namespace R0x
 {
-  namespace Tools
+  namespace Type
   {
-    namespace Type
+    namespace Traits
     {
-      namespace Traits
+      template <typename T>
+      struct Function;
+
+      template <typename R, typename... Args>
+      struct Function<R (*)(Args...)>
       {
-        template <typename T>
-        struct Function;
+        typedef R       ReturnType;
+      };
 
-        template <typename R, typename... Args>
-        struct Function<R (*)(Args...)>
-        {
-          typedef R       ReturnType;
-        };
+      template <typename T>
+      struct MemberFunction;
 
-        template <typename T>
-        struct MemberFunction;
-
-        template <typename R, class C, typename... Args>
-        struct MemberFunction<R (C::*)(Args...)>
-        {
-          typedef R     ReturnType;
-          typedef C     ClassType;
-        };
-
-      }
+      template <typename R, class C, typename... Args>
+      struct MemberFunction<R (C::*)(Args...)>
+      {
+        typedef R     ReturnType;
+        typedef C     ClassType;
+      };
     }
   }
 }
