@@ -47,7 +47,7 @@
   PREFIX##Iterator<T>                                                   \
   PREFIX##Iterator<T>::operator OP(const int i) const                   \
   {                                                                     \
-    PREFIX##Iterator<T> copy(container_, range_, index_ OP i);          \
+    PREFIX##Iterator<T> copy(container_, index_ OP i);                  \
     return copy;                                                        \
   }
 
@@ -73,7 +73,7 @@
   template <typename T>                                              \
   PREFIX##Iterator<T>     PREFIX##Iterator<T>::operator OP(int)      \
   {                                                                  \
-    PREFIX##Iterator<T> copy(container_, range_, index_);            \
+    PREFIX##Iterator<T> copy(container_, index_);                    \
     operator OP();                                                   \
     return copy;                                                     \
   }
@@ -86,17 +86,14 @@ namespace R0x
                                                                         \
     template <typename T>                                               \
     PREFIX##Iterator<T>::PREFIX##Iterator(T *container,                 \
-                                          const int *range,             \
                                           int index) :                  \
       container_(container),                                            \
-      range_(range),                                                    \
       index_(index) { }                                                 \
                                                                         \
     template <typename T>                                               \
     PREFIX##Iterator<T>::PREFIX##Iterator                               \
     (const PREFIX##Iterator<T>& copyFrom) :                             \
       container_(copyFrom.container_),                                  \
-      range_(copyFrom.range_),                                          \
       index_(copyFrom.index_) { }                                       \
                                                                         \
     template <typename T>                                               \
@@ -113,7 +110,6 @@ namespace R0x
     PREFIX##Iterator<T>::operator=(const PREFIX##Iterator<T>& copyFrom) \
     {                                                                   \
       container_ = copyFrom.container_;                                 \
-      range_ = copyFrom.range_;                                         \
       index_ = copyFrom.index_;                                         \
       return *this;                                                     \
     }                                                                   \

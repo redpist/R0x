@@ -10,8 +10,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     while (i != end) std::cout << *(i++);
     std::cout << std::endl;
@@ -33,8 +33,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     while (i < end)
       {
@@ -59,8 +59,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     --end;
     while (i <= end)
@@ -87,8 +87,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     --end;
     while (end >= i)
@@ -115,8 +115,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     while (i < end)
       {
@@ -141,8 +141,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       begin(&s0, 0);
+    R0x::Tools::Iterator<std::string>       i(&s0, size);
 
     while (i > begin)
       {
@@ -168,8 +168,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       begin(&s0, 0);
+    R0x::Tools::Iterator<std::string>       i(&s0, size);
 
     --i;
     while (i >= begin)
@@ -196,9 +196,9 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, size);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       begin(&s0, 0);
+    R0x::Tools::Iterator<std::string>       i(&s0, size);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     i = begin;
     while (i != end)
@@ -227,9 +227,9 @@ int main(void)
     std::string s0 = "I am a testing string.";
     std::string s1 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, size);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       begin(&s0, 0);
+    R0x::Tools::Iterator<std::string>       i(&s0, size);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     i = begin;
     while (i != end)
@@ -258,8 +258,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     i = i + 3;
     i += 1;
@@ -294,14 +294,14 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     *(i++) = 'U';
     *(i++) = '\'';
     *(i++) = 'r';
     *(i++) = 'e';
-    i = R0x::Tools::Iterator<std::string>(&s0, &size, 0);
+    i = R0x::Tools::Iterator<std::string>(&s0, 0);
     while (i != end)
       {
         std::cout << *(i++);
@@ -332,8 +332,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::Iterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::Iterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::Iterator<std::string>       i(&s0, 0);
+    R0x::Tools::Iterator<std::string>       end(&s0, size);
 
     while (i != end) std::cout << *(i++);
     std::cout << std::endl;
@@ -355,8 +355,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     while (i < end)
       {
@@ -382,8 +382,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     --end;
     while (i <= end)
@@ -410,8 +410,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     --end;
     while (end >= i)
@@ -438,8 +438,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     while (i < end)
       {
@@ -464,8 +464,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       begin(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, size);
 
     while (i > begin)
       {
@@ -491,8 +491,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       begin(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, size);
 
     --i;
     while (i >= begin)
@@ -519,9 +519,9 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, size);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       begin(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, size);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     i = begin;
     while (i != end)
@@ -550,9 +550,9 @@ int main(void)
     std::string s0 = "I am a testing string.";
     std::string s1 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       begin(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, size);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       begin(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, size);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     i = begin;
     while (i != end)
@@ -581,8 +581,8 @@ int main(void)
   {
     std::string s0 = "I am a testing string.";
     int size = s0.size();
-    R0x::Tools::ConstIterator<std::string>       i(&s0, &size, 0);
-    R0x::Tools::ConstIterator<std::string>       end(&s0, &size, size);
+    R0x::Tools::ConstIterator<std::string>       i(&s0, 0);
+    R0x::Tools::ConstIterator<std::string>       end(&s0, size);
 
     i = i + 3;
     i += 1;
