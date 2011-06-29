@@ -29,23 +29,30 @@
 
 #include <cstring>
 
+#include "container/has_iterator.h"
 
 namespace R0x
 {
   namespace Container
   {
-    template <size_t Size, typename T = char>
-    class FixedBuffer
+    template <size_t size, typename T = char>
+    class FixedBuffer : public HasIterators<FixedBuffer<size, T> >
     {
-      static_assert(Size, "R0x::Container::FixedBuffer<size_t Size, ...> can not have a Size = 0.");
-      T         data_[Size];
+      static_assert(size, "R0x::Container::FixedBuffer<size_t Size, ...> can not have a size = 0.");
+      T         data_[size];
     public:
       FixedBuffer() { }
+      FixedBuffer(const T* copyFrom)
+      {
+        ::memmove(reinterpret_cast<void*>(&data_),
+                  reinterpret_cast<const void*>(copyFrom), size);
+      }
       ~FixedBuffer() { }
       T& operator[](size_t i)
       {
         return data_[i];
       }
+      size_t    Size() { return size;}
     };
   }
 }

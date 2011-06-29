@@ -29,6 +29,7 @@
 
 #include "internal_/header.h"
 #include "type/traits.h"
+#include "type/control_flow.h"
 
 namespace R0x
 {
@@ -39,10 +40,10 @@ namespace R0x
     template <typename T>                                               \
     class PREFIX##Iterator                                              \
     {                                                                   \
-      T             *container_;                                        \
-      int           index_;                                             \
+      CONSTNESS T       *container_;                                    \
+      int               index_;                                         \
     public:                                                             \
-      PREFIX##Iterator(T *container, int index = 0);                    \
+      PREFIX##Iterator(CONSTNESS T *container, int index = 0);          \
                                                                         \
       PREFIX##Iterator(const PREFIX##Iterator<T>& copyFrom);            \
                                                                         \
@@ -70,7 +71,7 @@ namespace R0x
       bool  operator>=(const PREFIX##Iterator<T>& compareWith) const;   \
       bool  operator!=(const PREFIX##Iterator<T>& compareWith) const;   \
                                                                         \
-      CONSTNESS typename Type::Traits::Array<T>::DataType&              \
+      CONSTNESS  typename Type::Traits::Array<CONSTNESS T>::DataType    \
         operator*(void) CONSTNESS;                                      \
     }
 

@@ -28,6 +28,7 @@
 #define _R0X_IMPLEMENTATION_TOOLS_ITERATOR_H_
 
 #include "type/traits.h"
+#include "type/control_flow.h"
 
 #define HAVE_THE_SAME_CONTAINER(X) (container_ == (X).container_)
 
@@ -85,7 +86,7 @@ namespace R0x
 #define R0X_TOOLS_ITERATOR_IMPLEMENTATION(CONSTNESS, PREFIX)            \
                                                                         \
     template <typename T>                                               \
-    PREFIX##Iterator<T>::PREFIX##Iterator(T *container,                 \
+    PREFIX##Iterator<T>::PREFIX##Iterator(CONSTNESS T *container,       \
                                           int index) :                  \
       container_(container),                                            \
       index_(index) { }                                                 \
@@ -149,7 +150,7 @@ namespace R0x
     }                                                                   \
                                                                         \
     template <typename T>                                               \
-    CONSTNESS typename Type::Traits::Array<T>::DataType&                \
+    CONSTNESS  typename Type::Traits::Array<CONSTNESS T>::DataType      \
     PREFIX##Iterator<T>::operator*(void) CONSTNESS                      \
     {                                                                   \
       return container_->operator[](index_);                            \
