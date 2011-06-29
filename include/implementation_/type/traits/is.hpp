@@ -24,12 +24,29 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_IMPLEMENTATION_TYPE_TRAITS_H_
-#define _R0X_IMPLEMENTATION_TYPE_TRAITS_H_
+#ifndef _R0X_TYPE_TRAITS_IS_H_
+#define _R0X_TYPE_TRAITS_IS_H_
 
-#include "implementation_/type/traits/function.hpp"
-#include "implementation_/type/traits/array.hpp"
+namespace R0x
+{
+  namespace Type
+  {
+    namespace Traits
+    {
+      template <typename T>
+      struct IsRef
+      {
+        enum { value = false };
+      };
 
-#include "implementation_/type/traits/is.hpp"
+      template <typename T>
+      struct IsRef<T&>
+      {
+        enum { value = true };
+      };
+    }
+  }
+}
 
-#endif /* _R0X_IMPLEMENTATION_TYPE_TRAITS_H_ */
+
+#endif /* _R0X_TYPE_TRAITS_IS_H_ */
