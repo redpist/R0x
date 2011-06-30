@@ -77,30 +77,32 @@ namespace R0x
       struct HasIteratorDispatch;
 
       template <typename T>
+      struct HasIteratorDispatch<R0x::Tools::ConstIterator<T>, T>
+      {
+        typedef R0x::Container::HasConstIterator<T>  Type;
+      };
+
+      template <typename T>
       struct HasIteratorDispatch<R0x::Tools::Iterator<T>, T>
       {
         typedef R0x::Container::HasIterator<T>  Type;
       };
 
-      template <typename T>
-      struct HasIteratorDispatch<R0x::Tools::ConstIterator<T>, T>
-      {
-        typedef R0x::Container::HasConstIterator<T>  Type;
-      };
     }
 
     template <typename T>
-    class HasIterators
+    class HasIterators : public HasConstIterator<T>, public HasIterator<T>
     {
-    public:
-      typedef R0x::Tools::Iterator<T>      Iterator;
-      typedef R0x::Tools::ConstIterator<T>      ConstIterator;
-
-      R0X_BEGIN_AND_END_MEMBER_FN(,)
-      R0X_BEGIN_AND_END_MEMBER_FN(const,Const)
     protected:
       HasIterators() { }
       ~HasIterators() { }
+
+    public:
+      using HasIterator<T>::Begin;
+      using HasConstIterator<T>::Begin;
+
+      using HasIterator<T>::End;
+      using HasConstIterator<T>::End;
     };
 
 # undef R0X_BEGIN_AND_END_MEMBER_FN
