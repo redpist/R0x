@@ -83,7 +83,7 @@ namespace R0x
 {
   namespace Tools
   {
-#define R0X_TOOLS_ITERATOR_IMPLEMENTATION(CONSTNESS, PREFIX)            \
+#define R0X_TOOLS_ITERATOR_IMPLEMENTATION(CONSTNESS, PREFIX, CUSTOM)    \
                                                                         \
     template <typename T>                                               \
     PREFIX##Iterator<T>::PREFIX##Iterator(CONSTNESS T *container,       \
@@ -96,6 +96,8 @@ namespace R0x
     (const PREFIX##Iterator<T>& copyFrom) :                             \
       container_(copyFrom.container_),                                  \
       index_(copyFrom.index_) { }                                       \
+                                                                        \
+    CUSTOM                                                              \
                                                                         \
     template <typename T>                                               \
     PREFIX##Iterator<T>::~PREFIX##Iterator() { }                        \
@@ -156,8 +158,13 @@ namespace R0x
       return container_->operator[](index_);                            \
     }
 
-    R0X_TOOLS_ITERATOR_IMPLEMENTATION(,)
-    R0X_TOOLS_ITERATOR_IMPLEMENTATION(const, Const)
+    R0X_TOOLS_ITERATOR_IMPLEMENTATION(,,)
+    R0X_TOOLS_ITERATOR_IMPLEMENTATION(const, Const,
+                                      template <typename T>
+                                      ConstIterator<T>::ConstIterator
+                                      (const Iterator<T>& copyFrom) :
+                                      container_(copyFrom.container_)
+                                      { index_ = copyFrom.index_;})
   }
 }
 
