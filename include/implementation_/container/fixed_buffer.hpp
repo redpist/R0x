@@ -38,9 +38,10 @@ namespace R0x
     template <size_t size, typename T>
     class FixedBuffer : public HasIterators<FixedBuffer<size, T> >
     {
-      static_assert(size, "R0x::Container::FixedBuffer<size_t Size, ...> can not have a size = 0.");
+      static_assert(size, "R0x::Container::FixedBuffer<size_t size, ...> can not have a size = 0.");
       T         data_[size];
     public:
+
       FixedBuffer() { }
       FixedBuffer(const T* copyFrom)
       {
