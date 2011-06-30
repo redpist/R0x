@@ -40,6 +40,6 @@ namespace R0x
   }
 }
 
-#include "implementation_/container/fixed_buffer.h"
+#include "implementation_/container/fixed_buffer.hpp"
 
 #endif /* _R0X_CONTAINER_BUFFER_H_ */
