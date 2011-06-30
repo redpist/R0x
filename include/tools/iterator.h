@@ -25,11 +25,11 @@
 //////////////////
 
 #ifndef _R0X_TOOLS_ITERATOR_H_
-#define _R0X_TOOLS_ITERATOR_H_
+# define _R0X_TOOLS_ITERATOR_H_
 
-#include "internal_/header.h"
-#include "type/traits.h"
-#include "type/control_flow.h"
+# include "internal_/header.h"
+# include "type/traits.h"
+# include "type/control_flow.h"
 
 namespace R0x
 {
@@ -38,7 +38,7 @@ namespace R0x
     template <typename T>
     class ConstIterator;
 
-#define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX, CUSTOM)        \
+# define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX, CUSTOM)        \
     template <typename T>                                               \
     class PREFIX##Iterator                                              \
     {                                                                   \
@@ -81,9 +81,11 @@ namespace R0x
 
     R0X_TOOLS_ITERATOR_DEFINITION(,,friend class ConstIterator<T>;)
     R0X_TOOLS_ITERATOR_DEFINITION(const,Const, ConstIterator(const Iterator<T>& copyFrom);)
+
+# undef R0X_TOOLS_ITERATOR_DEFINITION
   }
 }
 
-#include "implementation_/tools/iterator.hpp"
+# include "implementation_/tools/iterator.hpp"
 
 #endif /* _R0X_TOOLS_ITERATOR_H_ */
