@@ -90,8 +90,14 @@ namespace R0x
     }
 
     template <typename T>
-    class HasIterators : public HasConstIterator<T>, public HasIterator<T>
+    class HasIterators
     {
+    public:
+      typedef R0x::Tools::Iterator<T>      Iterator;
+      typedef R0x::Tools::ConstIterator<T>      ConstIterator;
+
+      R0X_BEGIN_AND_END_MEMBER_FN(,)
+      R0X_BEGIN_AND_END_MEMBER_FN(const,Const)
     protected:
       HasIterators() { }
       ~HasIterators() { }

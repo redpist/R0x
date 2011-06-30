@@ -52,7 +52,13 @@ namespace R0x
       {
         return data_[i];
       }
-      size_t    Size() { return size;}
+
+      const T& operator[](size_t i) const
+      {
+        return data_[i];
+      }
+
+      size_t    Size() const { return size;}
     };
   }
 }
