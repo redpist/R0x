@@ -35,8 +35,10 @@ namespace R0x
 {
   namespace Tools
   {
+    template <typename T>
+    class ConstIterator;
 
-#define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX)                \
+#define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX, CUSTOM)        \
     template <typename T>                                               \
     class PREFIX##Iterator                                              \
     {                                                                   \
@@ -46,6 +48,8 @@ namespace R0x
       PREFIX##Iterator(CONSTNESS T *container, int index = 0);          \
                                                                         \
       PREFIX##Iterator(const PREFIX##Iterator<T>& copyFrom);            \
+                                                                        \
+      CUSTOM                                                            \
                                                                         \
       ~PREFIX##Iterator();                                              \
                                                                         \
@@ -73,10 +77,10 @@ namespace R0x
                                                                         \
       CONSTNESS  typename Type::Traits::Array<CONSTNESS T>::DataType    \
         operator*(void) CONSTNESS;                                      \
-    }
+    };
 
-    R0X_TOOLS_ITERATOR_DEFINITION(,);
-    R0X_TOOLS_ITERATOR_DEFINITION(const,Const);
+    R0X_TOOLS_ITERATOR_DEFINITION(,,friend class ConstIterator<T>;)
+    R0X_TOOLS_ITERATOR_DEFINITION(const,Const, ConstIterator(const Iterator<T>& copyFrom);)
   }
 }
 
