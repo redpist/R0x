@@ -24,8 +24,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_CONTAINER_BUFFER_H_
-#define _R0X_CONTAINER_BUFFER_H_
+#ifndef _R0X_CONTAINER_FIXED_BUFFER_H_
+#define _R0X_CONTAINER_FIXED_BUFFER_H_
 
 #include <cstring>
 
@@ -35,11 +35,33 @@ namespace R0x
 {
   namespace Container
   {
-    template <size_t size, typename T = char>
-    class FixedBuffer;
+    template <size_t size, typename T>
+    class FixedBuffer : public HasIterators<FixedBuffer<size, T> >
+    {
+      static_assert(size, "R0x::Container::FixedBuffer<size_t Size, ...> can not have a size = 0.");
+      T         data_[size];
+    public:
+      FixedBuffer() { }
+      FixedBuffer(const T* copyFrom)
+      {
+        ::memmove(reinterpret_cast<void*>(&data_),
+                  reinterpret_cast<const void*>(copyFrom), size);
+      }
+      ~FixedBuffer() { }
+      T& operator[](size_t i)
+      {
+        return data_[i];
+      }
+
+      const T& operator[](size_t i) const
+      {
+        return data_[i];
+      }
+
+      size_t    Size() const { return size;}
+    };
   }
 }
 
-#include "implementation_/container/fixed_buffer.h"
 
-#endif /* _R0X_CONTAINER_BUFFER_H_ */
+#endif /* _R0X_CONTAINER_FIXED_BUFFER_H_ */
