@@ -27,6 +27,8 @@
 #ifndef _R0X_TYPE_TRAITS_FUNCTION_H_
 #define _R0X_TYPE_TRAITS_FUNCTION_H_
 
+#include "type/list.h"
+
 namespace R0x
 {
   namespace Type
@@ -39,7 +41,8 @@ namespace R0x
       template <typename R, typename... Args>
       struct Function<R (*)(Args...)>
       {
-        typedef R       ReturnType;
+        typedef R                          ReturnType;
+        enum { NbOfArgs = sizeof...(Args) } ;
       };
 
       template <typename T>
@@ -50,6 +53,7 @@ namespace R0x
       {
         typedef R     ReturnType;
         typedef C     ClassType;
+        enum { NbOfArgs = sizeof...(Args) } ;
       };
     }
   }
