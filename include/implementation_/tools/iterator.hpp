@@ -65,7 +65,7 @@
 
 #define PRE_AND_POST_OPERATOR(OP, PREFIX)                            \
   template <typename T>                                              \
-  PREFIX##Iterator<T>&     PREFIX##Iterator<T>::operator OP(void)    \
+  PREFIX##Iterator<T>&    PREFIX##Iterator<T>::operator OP(void)     \
   {                                                                  \
     OP index_;                                                       \
     return *this;                                                    \
