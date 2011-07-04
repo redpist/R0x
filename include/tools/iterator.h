@@ -38,7 +38,7 @@ namespace R0x
     template <typename T>
     class ConstIterator;
 
-# define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX, CUSTOM)        \
+# define R0X_TOOLS_ITERATOR_DEFINITION(CONSTNESS, PREFIX, CUSTOM)       \
     template <typename T>                                               \
     class PREFIX##Iterator                                              \
     {                                                                   \
