@@ -35,17 +35,27 @@ namespace R0x
   {
 # define R0X_BEGIN_AND_END_MEMBER_FN(CONSTNESS, PREFIX)                 \
                                                                         \
-      PREFIX##Iterator  Begin() CONSTNESS                               \
-      {                                                                 \
-        return PREFIX##Iterator(static_cast<CONSTNESS T*>(this), 0);    \
-      }                                                                 \
+    PREFIX##Iterator  Begin() CONSTNESS                                 \
+    {                                                                   \
+      return PREFIX##Iterator(static_cast<CONSTNESS T*>(this), 0);      \
+    }                                                                   \
                                                                         \
-      PREFIX##Iterator  End() CONSTNESS                                 \
-      {                                                                 \
-        return PREFIX##Iterator                                         \
-          (static_cast<CONSTNESS T*>(this),                             \
-           static_cast<CONSTNESS T*>(this)->Size());                    \
-      }
+    PREFIX##Iterator  begin() CONSTNESS                                 \
+    {                                                                   \
+      return this->Begin();                                             \
+    }                                                                   \
+                                                                        \
+    PREFIX##Iterator  End() CONSTNESS                                   \
+    {                                                                   \
+      return PREFIX##Iterator                                           \
+        (static_cast<CONSTNESS T*>(this),                               \
+         static_cast<CONSTNESS T*>(this)->Size());                      \
+    }                                                                   \
+                                                                        \
+    PREFIX##Iterator  end() CONSTNESS                                   \
+    {                                                                   \
+      return this->End();                                               \
+    }
 
     template <typename T>
     class HasIterator
@@ -99,10 +109,14 @@ namespace R0x
 
     public:
       using HasIterator<T>::Begin;
+      using HasIterator<T>::begin;
       using HasConstIterator<T>::Begin;
+      using HasConstIterator<T>::begin;
 
       using HasIterator<T>::End;
+      using HasIterator<T>::end;
       using HasConstIterator<T>::End;
+      using HasConstIterator<T>::end;
     };
 
 # undef R0X_BEGIN_AND_END_MEMBER_FN
