@@ -2,7 +2,7 @@
 #include <iostream>
 #include "container/buffer.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
   //test 0
   std::cout << "Test 0:" << std::endl;
