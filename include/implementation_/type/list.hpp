@@ -36,7 +36,6 @@ namespace R0x
     template <typename... U>
     struct List;
 
-
     template <typename T>
     struct List<T>
     {

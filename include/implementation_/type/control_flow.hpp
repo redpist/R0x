@@ -27,12 +27,19 @@
 #ifndef _R0X_IMPLEMENTATION_TYPE_CONTROLFLOW_H_
 #define _R0X_IMPLEMENTATION_TYPE_CONTROLFLOW_H_
 
+#include "type/list.h"
+#include "type/null.h"
+
 namespace R0x
 {
   namespace Type
   {
     namespace ControlFlow
     {
+			////////////////////////////
+			//        Meta-If
+			////////////////////////////
+
       template <bool condition, typename IfTrue, typename IfFalse>
       struct If
       {
@@ -44,6 +51,41 @@ namespace R0x
       {
         typedef IfFalse Return;
       };
+
+			////////////////////////////
+			//      Meta-Foreach
+			////////////////////////////
+
+      template <typename T, template <typename T> class Operation, typename... Args>
+			struct Foreach<R0x::Type::List<T>, Operation, Args...>
+			{
+				static void Do(Args&&... args)
+				{
+					Operation<T>::Do(std::move(args...));
+				}
+
+				static void Do(Args&... args)
+				{
+					Operation<T>::Do(args...);
+				}
+			};
+
+      template <class TypeList, template <typename T> class Operation, typename... Args>
+			struct Foreach
+			{
+				static void Do(Args&&... args)
+				{
+					Operation<typename TypeList::Head>::Do(std::move(args...));
+					Foreach<typename TypeList::Tail, Operation, Args...>::Do(std::move(args...));
+				}
+
+				static void Do(Args&... args)
+				{
+					Operation<typename TypeList::Head>::Do(args...);
+					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
+				}
+
+			};
 
     }
   }

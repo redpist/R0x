@@ -27,6 +27,7 @@
 #ifndef _R0X_TYPE_CONTROLFLOW_H_
 #define _R0X_TYPE_CONTROLFLOW_H_
 
+
 namespace R0x
 {
   namespace Type
@@ -35,6 +36,9 @@ namespace R0x
     {
       template <bool condition, typename IfTrue, typename IfFalse>
       struct If;
+
+      template <class TypeList, template <typename T> class Operation, typename... Args>
+      struct Foreach;
     }
   }
 }
