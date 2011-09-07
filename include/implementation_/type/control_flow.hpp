@@ -59,12 +59,12 @@ namespace R0x
       template <typename T, template <typename T> class Operation, typename... Args>
 			struct Foreach<R0x::Type::List<T>, Operation, Args...>
 			{
-				static void Do(Args&&... args)
+				inline static void Do(Args&&... args)
 				{
 					Operation<T>::Do(args...);
 				}
 
-				static void Do(Args&... args)
+				inline static void Do(Args&... args)
 				{
 					Operation<T>::Do(args...);
 				}
@@ -73,13 +73,13 @@ namespace R0x
       template <class TypeList, template <typename T> class Operation, typename... Args>
 			struct Foreach
 			{
-				static void Do(Args&&... args)
+				inline static void Do(Args&&... args)
 				{
 					Operation<typename TypeList::Head>::Do(args...);
 					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
 				}
 
-				static void Do(Args&... args)
+				inline static void Do(Args&... args)
 				{
 					Operation<typename TypeList::Head>::Do(args...);
 					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
