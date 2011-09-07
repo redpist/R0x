@@ -61,7 +61,7 @@ namespace R0x
 			{
 				static void Do(Args&&... args)
 				{
-					Operation<T>::Do(std::move(args...));
+					Operation<T>::Do(args...);
 				}
 
 				static void Do(Args&... args)
@@ -75,8 +75,8 @@ namespace R0x
 			{
 				static void Do(Args&&... args)
 				{
-					Operation<typename TypeList::Head>::Do(std::move(args...));
-					Foreach<typename TypeList::Tail, Operation, Args...>::Do(std::move(args...));
+					Operation<typename TypeList::Head>::Do(args...);
+					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
 				}
 
 				static void Do(Args&... args)
