@@ -75,7 +75,7 @@ namespace R0x
 				inline static void Do(Args&& ... args)
 				{
 					Operation<typename TypeList::Head>::Do(args...);
-					Foreach<typename TypeList::Tail, Operation>::Do(std::move(args)...);
+					Foreach<typename TypeList::Tail, Operation>::Do(args...);
 				}
 			};
 		}
