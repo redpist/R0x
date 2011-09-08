@@ -24,13 +24,31 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 //////////////////
 
-#ifndef _R0X_IMPLEMENTATION_TYPE_TRAITS_H_
-#define _R0X_IMPLEMENTATION_TYPE_TRAITS_H_
+#ifndef _R0X_TYPE_TRAITS_REFERENCE_H_
+#define _R0X_TYPE_TRAITS_REFERENCE_H_
 
-#include "implementation_/type/traits/function.hpp"
-#include "implementation_/type/traits/array.hpp"
+namespace R0x
+{
+  namespace Type
+  {
+    namespace Traits
+    {
+			template <typename DirtyType>
+			struct RemoveReference;
 
-#include "implementation_/type/traits/is.hpp"
-#include "implementation_/type/traits/reference.hpp"
+			template <typename CleanType>
+			struct RemoveReference<CleanType&>
+			{
+				typedef CleanType			Type;
+			};
 
-#endif /* _R0X_IMPLEMENTATION_TYPE_TRAITS_H_ */
+			template <typename CleanType>
+			struct RemoveReference
+			{
+				typedef CleanType			Type;
+			};
+    }
+  }
+}
+
+#endif /* _R0X_TYPE_TRAITS_REFERENCE_H_ */

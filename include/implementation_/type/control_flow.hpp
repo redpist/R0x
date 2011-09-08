@@ -29,6 +29,7 @@
 
 #include "type/list.h"
 #include "type/null.h"
+#include "type/traits.h"
 
 namespace R0x
 {
@@ -55,6 +56,25 @@ namespace R0x
 			////////////////////////////
 			//      Meta-Foreach
 			////////////////////////////
+
+      template <typename T, template <typename T> class Operation>
+			struct Foreach<R0x::Type::List<T>, Operation>
+			{
+				inline static void Do()
+				{
+					Operation<T>::Do();
+				}
+			};
+
+      template <class TypeList, template <typename T> class Operation>
+			struct Foreach<TypeList, Operation>
+			{
+				inline static void Do()
+				{
+					Operation<typename TypeList::Head>::Do();
+					Foreach<typename TypeList::Tail, Operation>::Do();
+				}
+			};
 
       template <typename T, template <typename T> class Operation, typename... Args>
 			struct Foreach<R0x::Type::List<T>, Operation, Args...>
@@ -84,11 +104,11 @@ namespace R0x
 					Operation<typename TypeList::Head>::Do(args...);
 					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
 				}
-
 			};
 
-    }
+		}
   }
 }
+
 
 #endif /* _R0X_IMPLEMENTATION_TYPE_CONTROLFLOW_H_ */
