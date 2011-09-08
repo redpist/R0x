@@ -37,7 +37,7 @@ namespace R0x
       template <bool condition, typename IfTrue, typename IfFalse>
       struct If;
 
-      template <class TypeList, template <typename T> class Operation, typename... Args>
+      template <class TypeList, template <typename T> class Operation>
       struct Foreach;
     }
   }

@@ -57,55 +57,27 @@ namespace R0x
 			//      Meta-Foreach
 			////////////////////////////
 
+
       template <typename T, template <typename T> class Operation>
 			struct Foreach<R0x::Type::List<T>, Operation>
 			{
-				inline static void Do()
+				template <typename... Args>
+				inline static void Do(Args&& ... args)
 				{
-					Operation<T>::Do();
+					Operation<T>::Do(args...);
 				}
 			};
 
       template <class TypeList, template <typename T> class Operation>
-			struct Foreach<TypeList, Operation>
-			{
-				inline static void Do()
-				{
-					Operation<typename TypeList::Head>::Do();
-					Foreach<typename TypeList::Tail, Operation>::Do();
-				}
-			};
-
-      template <typename T, template <typename T> class Operation, typename... Args>
-			struct Foreach<R0x::Type::List<T>, Operation, Args...>
-			{
-				inline static void Do(Args&&... args)
-				{
-					Operation<T>::Do(args...);
-				}
-
-				inline static void Do(Args&... args)
-				{
-					Operation<T>::Do(args...);
-				}
-			};
-
-      template <class TypeList, template <typename T> class Operation, typename... Args>
 			struct Foreach
 			{
-				inline static void Do(Args&&... args)
+				template <typename... Args>
+				inline static void Do(Args&& ... args)
 				{
 					Operation<typename TypeList::Head>::Do(args...);
-					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
-				}
-
-				inline static void Do(Args&... args)
-				{
-					Operation<typename TypeList::Head>::Do(args...);
-					Foreach<typename TypeList::Tail, Operation, Args...>::Do(args...);
+					Foreach<typename TypeList::Tail, Operation>::Do(std::move(args)...);
 				}
 			};
-
 		}
   }
 }
