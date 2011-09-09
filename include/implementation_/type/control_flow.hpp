@@ -29,7 +29,7 @@
 
 #include "type/list.h"
 #include "type/null.h"
-#include "type/traits.h"
+#include <utility>
 
 namespace R0x
 {
@@ -64,7 +64,7 @@ namespace R0x
 				template <typename... Args>
 				inline static void Do(Args&& ... args)
 				{
-					Operation<T>::Do(args...);
+					Operation<T>::Do(std::forward<Args>(args)...);
 				}
 			};
 
@@ -74,8 +74,8 @@ namespace R0x
 				template <typename... Args>
 				inline static void Do(Args&& ... args)
 				{
-					Operation<typename TypeList::Head>::Do(args...);
-					Foreach<typename TypeList::Tail, Operation>::Do(std::move(args)...);
+					Operation<typename TypeList::Head>::Do(std::forward<Args>(args)...);
+					Foreach<typename TypeList::Tail, Operation>::Do(std::forward<Args>(args)...);
 				}
 			};
 		}
