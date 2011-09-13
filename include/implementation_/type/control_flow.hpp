@@ -57,6 +57,21 @@ namespace R0x
 			//      Meta-Foreach
 			////////////////////////////
 
+			template <typename T>
+			struct MemberFunctionOperation
+			{
+				template <class MemberFunctionPointerType, typename... Args>
+				inline static void Do(T&& object, MemberFunctionPointerType&& memberFunctionPointer, Args&& ... args)
+				{
+					(object.*memberFunctionPointer)(std::forward<Args>(args)...);
+				}
+
+				template <class MemberFunctionPointerType, typename... Args>
+				inline static void Do(T& object, MemberFunctionPointerType&& memberFunctionPointer, Args&& ... args)
+				{
+					(object.*memberFunctionPointer)(std::forward<Args>(args)...);
+				}
+			};
 
       template <typename T, template <typename T> class Operation>
 			struct Foreach<R0x::Type::List<T>, Operation>

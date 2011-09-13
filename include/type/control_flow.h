@@ -37,7 +37,17 @@ namespace R0x
       template <bool condition, typename IfTrue, typename IfFalse>
       struct If;
 
-      template <class TypeList, template <typename T> class Operation>
+
+			/*     Default operation assigned to Foreach      */
+			/* ---------------------------------------------  */
+			/* Call the first argument of Do as T             */
+			/* the second as pointer to T's member function , */
+			/* others as parameters of that member function.  */
+
+			template <typename T>
+			struct MemberFunctionOperation;
+
+      template <class TypeList, template <typename T> class Operation = MemberFunctionOperation>
       struct Foreach;
     }
   }
