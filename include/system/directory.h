@@ -38,14 +38,16 @@ namespace R0x
   namespace System
   {
     template <typename StringType>
-    class BasicDirectory : public BasicFile<StringType>
+    class BasicDirectory
     {
     public:
-      BasicDirectory(const StringType &path) : path_(path)
+      BasicDirectory(const StringType &path)
       {
         if (!(directory_ = opendir(path.c_str())))
           throw "error while opening directory : " + path;
       }
+
+      // BasicDirectory(const BasicFile<StringType> &path) : path_(path)
 
       // BasicDirectory &operator+=(const StringType &filename, int mode = 644);
       // BasicDirectory &operator+=(File &file);
@@ -55,21 +57,22 @@ namespace R0x
         closedir(directory_);
       }
 
+      typedef std::vector<BasicFile<StringType>> FileArray;
 
-      const std::vector<BasicFile<StringType>> &List()
+      const  FileArray &List()
       {
         struct dirent     *dirp;
         files_.clear();
-        while (dirp = readdir(directory_))
+        while ((dirp = readdir(directory_)))
           files_.push_back(File(dirp->d_name));
         seekdir(directory_, 0);
         return files_;
       }
 
     private:
+      BasicDirectory();
       DIR               *directory_;
-      std::string       path_;
-      std::vector<BasicFile<StringType>> files_;
+      FileArray         files_;
     };
 
     typedef BasicDirectory<std::string>      Directory;

@@ -35,9 +35,6 @@ namespace R0x
   namespace System
   {
     template <typename StringType>
-    class BasicDirectory;
-
-    template <typename StringType>
     class BasicFile
     {
     public:
@@ -53,8 +50,13 @@ namespace R0x
         return S_ISREG(st_buf.st_mode);
       }
 
+      const StringType &Path()
+      {
+        return path_;
+      }
+
     private:
-      std::string       path_;
+      StringType       path_;
     };
 
     typedef BasicFile<std::string>      File;
